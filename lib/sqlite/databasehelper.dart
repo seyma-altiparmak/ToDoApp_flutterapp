@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper{
-  static final String databaseName = "userdb.sqlite";
+  static final String databaseName = "tododb.sqlite";
 
   static Future<Database> databaseAccess() async{
     String databasePath = join(await getDatabasesPath(),databaseName);
