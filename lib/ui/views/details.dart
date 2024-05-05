@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp_flutterapp/data/entity/todo.dart';
+import 'package:todoapp_flutterapp/ui/cubit/detailscubit.dart';
 
 class Details extends StatefulWidget {
   ToDo todo;
@@ -35,7 +36,7 @@ class _DetailsState extends State<Details> {
               TextField(controller: tf_todonote,
                 decoration: const InputDecoration(hintText: "Text your note here..."),),
               ElevatedButton(onPressed: (){
-                context.read<DetailsPage_Cubit>().UpdateUser(widget.todo.todo_name);
+                context.read<DetailsPage_Cubit>().UpdateNote(widget.todo.todo_id,widget.todo.todo_name);
               }, child: const Text("Update"),),
             ],
           ),

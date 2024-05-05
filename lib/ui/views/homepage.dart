@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp_flutterapp/data/entity/todo.dart';
+import 'package:todoapp_flutterapp/ui/cubit/homepagecubit.dart';
 import 'package:todoapp_flutterapp/ui/views/details.dart';
+import 'package:todoapp_flutterapp/ui/views/newnote.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,22 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    context.read<HomePage_Cubit>().userLoad();
-
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
-
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
-  bool isInSearch= false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+    context.read<HomePage_Cubit>().noteLoad();
   }
 
   @override
@@ -55,7 +43,7 @@ class _HomepageState extends State<Homepage> {
                   setState(() {
                     isInSearch = false;
                   });
-                  context.read<HomePage_Cubit>().userLoad();
+                  context.read<HomePage_Cubit>().noteLoad();
                 },
                 icon: const Icon(Icons.clear))
                 : IconButton(
@@ -81,7 +69,7 @@ class _HomepageState extends State<Homepage> {
                             MaterialPageRoute(
                                 builder: (context) => Details(todo: k)))
                             .then((value) {
-                          context.read<HomePage_Cubit>().userLoad();
+                          context.read<HomePage_Cubit>().noteLoad();
                         });
                       },
                       child: Card(
@@ -109,7 +97,7 @@ class _HomepageState extends State<Homepage> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        "${k.todo_id} 'll delete u want continue?",
+                                        "${k.todo_name} 'll delete u want continue?",
                                       ),
                                       action: SnackBarAction(
                                         label: "Continue",
@@ -140,25 +128,11 @@ class _HomepageState extends State<Homepage> {
                 MaterialPageRoute(builder: (context) => const NewNotePage()))
                 .then(
                   (value) {
-                context.read<HomePage_Cubit>().userLoad();
+                context.read<HomePage_Cubit>().noteLoad();
               },
             );
           },
           child: const Icon(Icons.add),
-        ),
-
-          title: isInSearch ?
-          TextField(
-            decoration: const InputDecoration(hintText: "Search Note"),
-            onChanged: (searchResult){
-              
-            },
-          ): const Text("To Do App"),
-          actions: [
-            isInSearch
-            ? IconButton(onPressed: (){}, icon: const Icon(Icons.close)):
-                IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
-          ],
         ),
       ),
     );

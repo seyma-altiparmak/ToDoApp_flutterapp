@@ -1,12 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todoapp_flutterapp/data/entity/todo.dart';
+import 'package:todoapp_flutterapp/data/repo/TodoDaoRepository.dart';
 
-class HomePage_Cubit extends Cubit<List<Users>>{
-  HomePage_Cubit():super(<Users>[]);
+class HomePage_Cubit extends Cubit<List<ToDo>>{
+  HomePage_Cubit():super(<ToDo>[]);
 
-  var krepo = ToDoDAO();
+  var krepo = ToDoDaoRepository();
 
-  Future<void> userLoad() async {
-    var list = await krepo.userLoad();
+  Future<void> noteLoad() async {
+    var list = await krepo.noteLoad();
     emit(list);
   }
 
@@ -17,6 +19,6 @@ class HomePage_Cubit extends Cubit<List<Users>>{
 
   Future<void> delete(int id) async {
     await krepo.delete(id);
-    await userLoad();
+    await noteLoad();
   }
 }

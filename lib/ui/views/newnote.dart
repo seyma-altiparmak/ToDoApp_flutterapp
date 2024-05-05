@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todoapp_flutterapp/ui/cubit/newnotecubit.dart';
 
 class NewNotePage extends StatefulWidget {
   const NewNotePage({super.key});
@@ -25,7 +26,7 @@ class _RegisterPageState extends State<NewNotePage> {
               TextField(controller: tf_todonote,
                 decoration: const InputDecoration(hintText: "Text here your note..."),),
               ElevatedButton(onPressed: (){
-                context.read<RegisterPage_Cubit>().Save(tf_todonote.text);
+                context.read<NewNote_Cubit>().Save(tf_todonote.text);
               }, child: const Text("SAVE"),),
             ],
           ),
