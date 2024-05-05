@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp_flutterapp/data/entity/todo.dart';
 import 'package:todoapp_flutterapp/ui/cubit/detailscubit.dart';
 
-class Details extends StatefulWidget {
+class DetailsPage extends StatefulWidget {
   ToDo todo;
 
-  Details({required this.todo});
+  DetailsPage({required this.todo});
 
   @override
-  State<Details> createState() => _DetailsState();
+  State<DetailsPage> createState() => _DetailsState();
 }
 
-class _DetailsState extends State<Details> {
+class _DetailsState extends State<DetailsPage> {
   var tf_todonote = TextEditingController();
 
 

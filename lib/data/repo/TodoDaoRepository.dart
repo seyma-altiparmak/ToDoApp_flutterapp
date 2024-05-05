@@ -7,14 +7,14 @@ class ToDoDaoRepository{
     var db = await DatabaseHelper.databaseAccess();
     var newNote = Map<String,dynamic>();
 
-    newNote["todo_note"] = note;
+    newNote["todo_name"] = note;
     await db.insert("ToDo", newNote);
   }
   Future<void> UpdateNote(int id,String note) async{
     var db = await DatabaseHelper.databaseAccess();
     var updateNote = Map<String,dynamic>();
 
-    updateNote["todo_note"] = note;
+    updateNote["todo_name"] = note;
 
     await db.update("ToDo", updateNote, where: "todo_id = ?", whereArgs: [id]);
   }
@@ -29,17 +29,17 @@ class ToDoDaoRepository{
     return List.generate((maps.length), (i)
     {
       var row = maps[i];
-      return ToDo(todo_id: row["todo_id"], todo_name: row["todo_note"]);
+      return ToDo(todo_id: row["todo_id"], todo_name: row["todo_name"]);
     });
   }
   Future<List<ToDo>> search(String searchWord) async {
     var db = await DatabaseHelper.databaseAccess();
-    List<Map<String,dynamic>> maps = await db.rawQuery("SELECT * FROM ToDo WHERE todo_note LIKE '%$searchWord%'");
+    List<Map<String,dynamic>> maps = await db.rawQuery("SELECT * FROM ToDo WHERE todo_name LIKE '%$searchWord%'");
 
     return List.generate((maps.length), (i)
     {
       var row = maps[i];
-      return ToDo(todo_id: row["todo_id"], todo_name: row["todo_note"]);
+      return ToDo(todo_id: row["todo_id"], todo_name: row["todo_name"]);
     });
   }
 }

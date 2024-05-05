@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.cyanAccent,
           title: isInSearch
               ? TextField(
             decoration: const InputDecoration(hintText: "Search"),
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               context.read<HomePage_Cubit>().search(searchResult);
             },
           )
-              : const Text("USERS"),
+              : const Text("To Do App", style: TextStyle(color: Colors.white, fontFamily: "Lemonada",),),
           actions: [
             isInSearch
                 ? IconButton(
@@ -45,14 +46,14 @@ class _HomePageState extends State<HomePage> {
                   });
                   context.read<HomePage_Cubit>().noteLoad();
                 },
-                icon: const Icon(Icons.clear))
+                icon: const Icon(Icons.clear,color: Colors.white,))
                 : IconButton(
                 onPressed: () {
                   setState(() {
                     isInSearch = true;
                   });
                 },
-                icon: const Icon(Icons.search)),
+                icon: const Icon(Icons.search,color: Colors.white,)),
           ],
         ),
         body: BlocBuilder<HomePage_Cubit,List<ToDo>>(
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Details(todo: k)))
+                                builder: (context) => DetailsPage(todo: k)))
                             .then((value) {
                           context.read<HomePage_Cubit>().noteLoad();
                         });
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                                 icon: Icon(Icons.delete_forever),
-                                color: Colors.black38,
+                                color: Colors.white12,
                               ),
                             ],
                           ),
@@ -132,7 +133,7 @@ class _HomePageState extends State<HomePage> {
               },
             );
           },
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.add,color: Colors.white,),
         ),
       ),
     );

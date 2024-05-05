@@ -16,7 +16,7 @@ class _RegisterPageState extends State<NewNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("REGISTER"),),
+      appBar: AppBar(title: const Text("NEW Note"),),
       body: Center(
         child: Padding(
           padding: EdgeInsets.only(left: 50, right: 50),
