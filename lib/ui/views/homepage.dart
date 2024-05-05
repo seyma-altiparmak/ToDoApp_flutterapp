@@ -18,6 +18,21 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     context.read<HomePage_Cubit>().userLoad();
+
+class Homepage extends StatefulWidget {
+  const Homepage({super.key});
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  bool isInSearch= false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -130,6 +145,20 @@ class _HomePageState extends State<HomePage> {
             );
           },
           child: const Icon(Icons.add),
+        ),
+
+          title: isInSearch ?
+          TextField(
+            decoration: const InputDecoration(hintText: "Search Note"),
+            onChanged: (searchResult){
+              
+            },
+          ): const Text("To Do App"),
+          actions: [
+            isInSearch
+            ? IconButton(onPressed: (){}, icon: const Icon(Icons.close)):
+                IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
+          ],
         ),
       ),
     );
